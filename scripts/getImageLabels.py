@@ -11,5 +11,5 @@ def getImageLabels(base64Img):
     for concept in result["outputs"][0]["data"]["concepts"]:
         imageLabels.append(concept["name"])
 
-    return ''.join(imageLabels);
+    return imageLabels;
 
