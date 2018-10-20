@@ -1,4 +1,4 @@
-from flask import Flask, request 
+from flask import Flask, jsonify, request 
 from getImageLabels import getImageLabels
 from emojiFinder import getEmojis
 
@@ -19,7 +19,7 @@ def apihomepage():
 
         # Get related emojis to the labels
         emojis = getEmojis(imageLabels)
-        return ', '.join(list(emojis))
+        return jsonify(emojis=list(emojis))
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True) 

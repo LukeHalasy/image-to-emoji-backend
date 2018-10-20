@@ -27,11 +27,13 @@ def getEmojis(concept_list):
                         # f.write(emoji)
                         unicode_list = split_unicode_list(data[j]['unicode'])
                         for l in range(len(unicode_list)):
-                            unicode_set.add(convert_unicode_readable(unicode_list[l]))
+                            if len(unicode_set) < 5: 
+                                unicode_set.add(convert_unicode_readable(unicode_list[l]))
+                            else:
+                                break 
+                            
                         break
     return unicode_set
-
-        
 
 # def open_file(filename):
 #     if sys.platform == "win32":
