@@ -10,7 +10,7 @@ def split_unicode_list(unicode_list):
 
 def getEmojis(concept_list):
     unicode_set = set()
-    with open('../dataset/emojis.json') as json_data:
+    with open('./dataset/emojis.json') as json_data:
         data = json.load(json_data)
         for i in range(len(concept_list)):
             for j in range(len(data)):

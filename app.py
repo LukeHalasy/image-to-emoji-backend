@@ -4,8 +4,8 @@ from emojiFinder import getEmojis
 
 app = Flask(__name__)
 
-@app.route('/test', methods=['POST'])
-def test():
+@app.route('/', methods=['POST'])
+def apihomepage():
     data = request.get_json()
 
     image = None
@@ -22,4 +22,4 @@ def test():
         return ', '.join(list(emojis))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000) #run app in debug mode on port 5000
+    app.run(debug=True, use_reloader=True) 
