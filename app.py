@@ -7,6 +7,8 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def apihomepage():
     data = request.get_json()
+    if !data:
+        return "Please send data"
 
     image = None
     if 'image' in data:
@@ -20,6 +22,8 @@ def apihomepage():
         # Get related emojis to the labels
         emojis = getEmojis(imageLabels)
         return jsonify(emojis=list(emojis))
+    else:
+        return 'Please send an image'
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True) 
