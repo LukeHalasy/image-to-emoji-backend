@@ -23,7 +23,7 @@ def apihomepage():
 
         # Get related emojis to the labels
         emojis = getEmojis(imageLabels)
-        return jsonify(emojis=list(emojis))
+        return jsonify(emojis=list(emojis), hashtags=["#" + hashtag for hashtag in imageLabels[0:5]])
     else:
         return 'Please send an image'
 
