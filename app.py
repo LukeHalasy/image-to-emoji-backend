@@ -13,19 +13,23 @@ def apihomepage():
     data = request.get_json()
 
     image = None
-    if 'image' in data:
+    imageLabels = None
+    if "image" in data:
         # Get rid of the type-define text of the request
         image = data['image']
         image = image.split(",")[1]
 
         # Get the labels of the image with clarify
-        imageLabels = getImageLabels(image)
-
-        # Get related emojis to the labels
-        emojis = getEmojis(imageLabels)
-        return jsonify(emojis=list(emojis), hashtags=["#" + hashtag for hashtag in imageLabels[0:5]])
+        imageLabels = getImageLabels(image, 'base64')
+    elif "url" in data:
+        image = data['url']
+        imageLabels = getImageLabels(image, 'url')
     else:
         return 'Please send an image'
+
+    # Get related emojis to the labels
+    emojis = getEmojis(imageLabels)
+    return jsonify(emojis=list(emojis), hashtags=["#" + hashtag for hashtag in imageLabels[0:5]])
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True) 
