@@ -7,8 +7,6 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def apihomepage():
     data = request.get_json()
-    if !data:
-        return "Please send data"
 
     image = None
     if 'image' in data:
